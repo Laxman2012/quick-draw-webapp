@@ -64,15 +64,15 @@ function update_canvas()
 
     background("white");
     random_number = Math.floor(Math.random()*quick_draw_data_set.length);
-    sketch = quick_draw_data_set[randomNo];
-    document.getElementById("sketch").innerHTML = "sketch to be drawn " + sketch;   
+    sketch = quick_draw_data_set[random_number];
+    document.getElementById("sketch_drawn").innerHTML = "sketch to be drawn : " + sketch;   
 
 }
 
 function setup()
 {
 
-  canvas = createCanvas(280,280);
+  canvas = createCanvas(280 ,280);
   canvas.center();
   background("white");
   canvas.mouseReleased(classifyCanvas);
@@ -107,6 +107,10 @@ function gotResult(error , results)
  {
 
     console.log(results);
+    drawn_sketch = results[0].label;
+    document.getElementById("sketch").innerHTML = 'Your sketch : ' + drawn_sketch;
+    document.getElementById("accuracy").innerHTML = 'Confidence : ' + Math.round(results[0].confidence*100) + '%';
+
 
  }
 
